@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Calculadora de juros simples e compostos</title>
+  <meta name="description" content="Compare juros simples e juros compostos lado a lado e veja a evolução mês a mês.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="pagina">
+    <header class="topo">
+      <h1>Juros simples e compostos</h1>
+      <p>Veja quanto um valor rende ao longo do tempo com cada tipo de juros e compare os dois resultados lado a lado.</p>
+    </header>
+
+    <form id="formulario" class="painel formulario" novalidate>
+      <div class="campo">
+        <label for="capital">Capital inicial (R$)</label>
+        <input id="capital" type="number" inputmode="decimal" min="0" step="0.01" value="1000">
+      </div>
+
+      <div class="campo">
+        <label for="taxa">Taxa de juros (% ao mês)</label>
+        <input id="taxa" type="number" inputmode="decimal" min="0" step="0.01" value="1">
+      </div>
+
+      <div class="campo">
+        <label for="meses">Período (meses)</label>
+        <input id="meses" type="number" inputmode="numeric" min="1" max="600" step="1" value="12">
+      </div>
+
+      <button type="submit">Calcular</button>
+
+      <p id="erro" class="erro" role="alert"></p>
+    </form>
+
+    <section class="resultado" aria-live="polite">
+      <div class="comparacao">
+        <article class="painel cartao cartao-simples">
+          <h2>Juros simples</h2>
+          <p class="rotulo">Montante final</p>
+          <p class="valor" id="simples-montante"></p>
+          <p class="rotulo">Juros acumulados</p>
+          <p class="subvalor" id="simples-juros"></p>
+          <p class="formula">Os juros incidem sempre sobre o capital inicial.<br>M = C × (1 + i × t)</p>
+        </article>
+
+        <article class="painel cartao cartao-composto">
+          <h2>Juros compostos</h2>
+          <p class="rotulo">Montante final</p>
+          <p class="valor" id="composto-montante"></p>
+          <p class="rotulo">Juros acumulados</p>
+          <p class="subvalor" id="composto-juros"></p>
+          <p class="formula">Os juros incidem sobre o capital mais os juros já ganhos.<br>M = C × (1 + i)<sup>t</sup></p>
+        </article>
+      </div>
+
+      <div class="painel barras">
+        <div class="barra">
+          <span>Simples</span>
+          <div class="area">
+            <div class="trilho" id="trilho-simples">
+              <span class="seg-capital" id="capital-simples"></span>
+              <span class="seg-simples" id="juros-simples"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="barra">
+          <span>Compostos</span>
+          <div class="area">
+            <div class="trilho" id="trilho-composto">
+              <span class="seg-capital" id="capital-composto"></span>
+              <span class="seg-composto" id="juros-composto"></span>
+            </div>
+          </div>
+        </div>
+
+        <p class="legenda">A parte cinza de cada barra é o capital inicial. A parte colorida são os juros.</p>
+        <p class="conclusao" id="conclusao"></p>
+      </div>
+
+      <details>
+        <summary>Ver evolução mês a mês</summary>
+        <div class="tabela-rolagem">
+          <table>
+            <caption class="sr-only">Montante acumulado a cada mês com juros simples e com juros compostos</caption>
+            <thead>
+              <tr>
+                <th scope="col">Mês</th>
+                <th scope="col">Juros simples</th>
+                <th scope="col">Juros compostos</th>
+              </tr>
+            </thead>
+            <tbody id="tabela-corpo"></tbody>
+          </table>
+        </div>
+      </details>
+    </section>
+
+    <footer class="rodape">
+      <p>Projeto de estudo. Os valores são simulações e não constituem recomendação de investimento.</p>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,310 @@
+:root {
+  --fundo: #eef1f5;
+  --superficie: #ffffff;
+  --tinta: #1a2233;
+  --tinta-suave: #586377;
+  --linha: #d6dce5;
+  --borda-campo: #8793a6;
+  --capital: #c7cfdc;
+  --simples: #d99a00;
+  --composto: #2f3fe0;
+  --erro: #b3261e;
+  --raio: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--tinta);
+  font-family: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
+.pagina {
+  max-width: 52rem;
+  margin: 0 auto;
+  padding: 3rem 1.25rem 4rem;
+}
+
+/* Cabeçalho */
+h1 {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.topo p {
+  max-width: 38rem;
+  margin: 0 0 2rem;
+  color: var(--tinta-suave);
+}
+
+/* Painel base (usado no formulário, nos cartões e nas barras) */
+.painel {
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  padding: 1.25rem;
+}
+
+/* Formulário */
+.formulario {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 1rem;
+  align-items: end;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+label {
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+input {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  border: 1px solid var(--borda-campo);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--tinta);
+  font: inherit;
+}
+
+button {
+  padding: 0.7rem 1.4rem;
+  border: 0;
+  border-radius: 8px;
+  background: var(--tinta);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2c3850;
+}
+
+input:focus-visible,
+button:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--composto);
+  outline-offset: 2px;
+}
+
+.erro {
+  grid-column: 1 / -1;
+  margin: 0;
+  color: var(--erro);
+  font-size: 0.9rem;
+}
+
+.erro:empty {
+  display: none;
+}
+
+/* Resultados */
+.resultado {
+  margin-top: 2rem;
+}
+
+.comparacao {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.cartao h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0 0 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.cartao h2::before {
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 3px;
+  background: var(--cor);
+}
+
+.cartao-simples {
+  --cor: var(--simples);
+}
+
+.cartao-composto {
+  --cor: var(--composto);
+}
+
+.rotulo {
+  margin: 0;
+  color: var(--tinta-suave);
+  font-size: 0.85rem;
+}
+
+.valor {
+  margin: 0 0 0.75rem;
+  font-size: clamp(1.6rem, 4vw, 2.1rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.subvalor {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.formula {
+  margin: 1rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--linha);
+  color: var(--tinta-suave);
+  font-size: 0.85rem;
+}
+
+/* Barras de comparação */
+.barras {
+  margin-top: 1rem;
+}
+
+.barra {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 0.6rem;
+  font-size: 0.9rem;
+}
+
+.trilho {
+  display: flex;
+  height: 1.1rem;
+  overflow: hidden;
+  border-radius: 6px;
+}
+
+.trilho span {
+  display: block;
+  height: 100%;
+}
+
+.seg-capital {
+  background: var(--capital);
+}
+
+.seg-simples {
+  background: var(--simples);
+}
+
+.seg-composto {
+  background: var(--composto);
+}
+
+.legenda {
+  margin: 0.75rem 0 0;
+  color: var(--tinta-suave);
+  font-size: 0.85rem;
+}
+
+.conclusao {
+  margin: 0.75rem 0 0;
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .trilho,
+  .trilho span {
+    transition: width 0.4s ease;
+  }
+}
+
+/* Tabela */
+details {
+  margin-top: 1.5rem;
+}
+
+summary {
+  padding: 0.5rem 0;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.tabela-rolagem {
+  max-height: 20rem;
+  overflow: auto;
+  border: 1px solid var(--linha);
+  border-radius: 8px;
+  background: var(--superficie);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+th,
+td {
+  padding: 0.5rem 0.9rem;
+  border-bottom: 1px solid var(--linha);
+  text-align: right;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+thead th {
+  position: sticky;
+  top: 0;
+  background: var(--superficie);
+}
+
+/* Rodapé */
+.rodape {
+  margin-top: 3rem;
+  color: var(--tinta-suave);
+  font-size: 0.85rem;
+}
+
+/* Telas pequenas */
+@media (max-width: 42rem) {
+  .formulario,
+  .comparacao {
+    grid-template-columns: 1fr;
+  }
+
+  .barra {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
